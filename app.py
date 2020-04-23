@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import Flask, render_template, request, session, redirect, url_for,jsonify
 import utils.checkFileName as cfn
 import utils.record as record
@@ -5,7 +6,7 @@ app = Flask(__name__)
 record_job = record.Records()
 
 @app.route('/')
-def hello_world():
+def checkFile():
     return render_template('checkFileName.html')
 
 @app.route('/checkFileName',methods=['POST'])

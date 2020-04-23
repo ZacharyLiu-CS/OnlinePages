@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Hello, world!</title>
+  <title>Check Your File Name Here!</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -105,14 +105,14 @@
                       </div>
 
                         <div class="fileinput " data-provides="fileinput">
-                            <div>
-                                <span class="btn btn-raised btn-default btn-file">
-                                    <input id="file_need_to_check"type="file" stype="background-color:transparent;" />
+                            <div style="width: 100%">
+                                <span class="btn btn-raised btn-default btn-file" style="width: 100%">
+                                    <input id="file_need_to_check"type="file" stype="background-color:transparent;width: 100%;" />
 
                                 </span>
                             </div>
                              <a id ="check_button" style="width: 48%" onclick="checkFile()" class="btn btn-success  fileinput-exists" data-dismiss="fileinput"><i class="fa fa-check"></i> Check</a>
-                             <a id ="remove_button" style="width: 48%" onclick="removeFile()" class="btn btn-danger  fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                             <a id ="remove_button" style="width: 49%" onclick="removeFile()" class="btn btn-danger  fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
 
                               <div class="progress" id="upload_bar" hidden="true">
                       <div class="progress-bar progress-bar-striped progress-bar-animated" id="upload_progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
@@ -204,6 +204,7 @@
 
         <script>
             freshChart();
+      
             function freshChart(){
                 myChart = echarts.init(document.getElementById('main'));
 
@@ -211,25 +212,20 @@
                         url: 'getRecordData',
                         type: 'POST',
                         dataType:'json',
-                        beforeSend:function(){
-                            {#$("#message1").text("请稍后...")#}
-                            {#$("#message1").show()#}
-                            $("#upload_progress").show()
-                        },
                         success: function (result) {
                             if (result.code == 1) {
                                 console.log(result.msg);
-                                {#window.location.reload();#}
+                            
                                 option.series[0].data = result.msg.usetimes;
                                 option.series[1].data = result.msg.falserate;
-                                option.yAxis[0].max = Math.max(...result.msg.usetimes) ;
-                                option.yAxis[0].interval = Math.max(...result.msg.usetimes)*0.2;
+                                option.yAxis[0].max = Math.max(...result.msg.usetimes) ;     
+                                option.yAxis[0].interval = (Math.max(...result.msg.usetimes)*0.2).toFixed(1);         
                                 myChart.setOption(option);
                                 $("#false_rate").text(result.msg.falserate[6]+"%");
 
                             } else {
                                 console.log(result.msg);
-                                {#window.location.reload();#}
+ 
                             }
 
                         },

@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import schedule
 import time
 
@@ -38,7 +39,7 @@ class Records:
         self.falserate =[0.0]*7
         for i in range(len(self.falsetimes)):
             if self.usetimes[i] != 0:
-                self.falserate[i]=self.falsetimes[i]*100/self.usetimes[i]
+                self.falserate[i]=round(self.falsetimes[i]*100/self.usetimes[i],2)
         print(self.__dict__)
         return self.__dict__
 

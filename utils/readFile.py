@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import csv
 import openpyxl
 def read_bb_file(filepath):
